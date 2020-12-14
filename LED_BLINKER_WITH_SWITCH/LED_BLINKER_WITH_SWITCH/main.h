@@ -26,6 +26,7 @@ void CheckSWs(void);
  */
 uint8_t SW1Pressed_F;
 uint8_t SW1ActionTaken_F;
+uint8_t IS_BLINKING_F;
 
 /**
  * Timers

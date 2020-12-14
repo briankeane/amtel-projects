@@ -44,13 +44,13 @@ void CheckSWs(void)
 {
 	if (SW1Pressed_F && !SW1ActionTaken_F)
 	{
-		LED_OFF();
+		IS_BLINKING_F = !IS_BLINKING_F;
 		SW1ActionTaken_F = TRUE;
 	}
 	else if ( !SW1Pressed_F && SW1ActionTaken_F)
 	{
 		
-		LED_ON();
+		// LED_ON();
 		SW1ActionTaken_F = FALSE;
 	}
 }
@@ -99,14 +99,16 @@ ISR(TIMER1_COMPA_vect)
 	if ((TestTimer) && (TestTimer < TIMER_DISABLE))
 		TestTimer--;
 		
+	SecsCounter++;
+	
 	if (SecsCounter == 1000)
 	{
 		
 		SecsCounter = 0;
 		
 		// Handle 1 sec events here
-		
-		// LED_TOGGLE();
+		if (IS_BLINKING_F == TRUE)
+			LED_TOGGLE();
 	}
 	
 	if (SW1 != SW_PRESSED)
